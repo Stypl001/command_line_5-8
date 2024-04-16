@@ -1,1 +1,822 @@
+# Concepts addressed:
+(Prompt, Parameter, Argument)
 
+Last login: Thu Mar  7 14:01:15 on ttys000
+
+grnq61-82:~ stypl001$ echo this is a test
+
+this is a test
+
+grnq61-82:~ stypl001$ echo *
+
+Applications Desktop Documents Downloads Library Movies Music Pictures Public command-line-1-4-command-line.docx dir1 dir2
+
+grnq61-82:~ stypl001$ ls
+
+Applications Music
+
+Desktop Pictures
+
+Documents Public
+
+Downloads command-line-1-4-command-line.docx
+
+Library dir1
+
+Movies dir2
+
+grnq61-82:~ stypl001$ echo D*
+
+Desktop Documents Downloads
+
+grnq61-82:~ stypl001$ echo *s
+
+Applications Documents Downloads Movies Pictures
+
+grnq61-82:~ stypl001$ echo [[:upper:]]*
+
+Applications Desktop Documents Downloads Library Movies Music Pictures Public
+
+grnq61-82:~ stypl001$ echo /usr/*/share
+
+/usr/local/share
+
+grnq61-82:~ stypl001$ echo ~
+
+/Users/stypl001
+
+grnq61-82:~ stypl001$ echo ~foo
+
+~foo
+
+grnq61-82:~ stypl001$ echo $((2 + 2))
+
+4
+
+grnq61-82:~ stypl001$ echo $(($((5**2)) * 3))
+
+75
+
+grnq61-82:~ stypl001$ echo $(((5**2) * 3))
+
+75
+
+grnq61-82:~ stypl001$ echo Five divided by two equals $((5/2))
+
+Five divided by two equals 2
+
+grnq61-82:~ stypl001$ echo with $((5%2)) left over.
+
+with 1 left over.
+
+grnq61-82:~ stypl001$ echo Front-{A,B,C}-Back
+
+Front-A-Back Front-B-Back Front-C-Back
+
+grnq61-82:~ stypl001$ echo Number_{1..5}
+
+Number_1 Number_2 Number_3 Number_4 Number_5
+
+grnq61-82:~ stypl001$ echo {01..15}
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+grnq61-82:~ stypl001$ echo {001..15}
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+grnq61-82:~ stypl001$ echo {Z..A}
+
+Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
+
+grnq61-82:~ stypl001$ echo a{A{1,2},B{3,4}}b
+
+aA1b aA2b aB3b aB4b
+
+grnq61-82:~ stypl001$ mkdir Photos
+
+grnq61-82:~ stypl001$ cd Photos
+
+grnq61-82:Photos stypl001$ mkdir {2007..2009}-{01..12}
+
+grnq61-82:Photos stypl001$ ls
+
+2007-1 2007-2 2007-6 2008-1 2008-2 2008-6 2009-1 2009-2 2009-6
+
+2007-10 2007-3 2007-7 2008-10 2008-3 2008-7 2009-10 2009-3 2009-7
+
+2007-11 2007-4 2007-8 2008-11 2008-4 2008-8 2009-11 2009-4 2009-8
+
+2007-12 2007-5 2007-9 2008-12 2008-5 2008-9 2009-12 2009-5 2009-9
+
+grnq61-82:Photos stypl001$ echo $USER
+
+stypl001
+
+grnq61-82:Photos stypl001$ printenv | less
+
+grnq61-82:Photos stypl001$ echo $SUER
+
+
+
+
+grnq61-82:Photos stypl001$ echo $(ls)
+
+2007-1 2007-10 2007-11 2007-12 2007-2 2007-3 2007-4 2007-5 2007-6 2007-7 2007-8 2007-9 2008-1 2008-10 2008-11 2008-12 2008-2 2008-3 2008-4 2008-5 2008-6 2008-7 2008-8 2008-9 2009-1 2009-10 2009-11 2009-12 2009-2 2009-3 2009-4 2009-5 2009-6 2009-7 2009-8 2009-9
+
+grnq61-82:Photos stypl001$ cd ../
+
+grnq61-82:~ stypl001$ echo $(ls)
+
+Applications Desktop Documents Downloads Library Movies Music Photos Pictures Public command-line-1-4-command-line.docx dir1 dir2
+
+grnq61-82:~ stypl001$ ls -l $(which cp)
+
+-rwxr-xr-x  1 root  wheel  29024 Jul 29  2019 /bin/cp
+
+grnq61-82:~ stypl001$ file $(ls -d /usr/bin/* | grep zip)
+
+/usr/bin/bunzip2:        Mach-O 64-bit executable x86_64
+
+/usr/bin/bzip2:          Mach-O 64-bit executable x86_64
+
+/usr/bin/bzip2recover:   Mach-O 64-bit executable x86_64
+
+/usr/bin/funzip:         Mach-O 64-bit executable x86_64
+
+/usr/bin/gunzip:         Mach-O 64-bit executable x86_64
+
+/usr/bin/gzip:           Mach-O 64-bit executable x86_64
+
+/usr/bin/unzip:          Mach-O 64-bit executable x86_64
+
+/usr/bin/unzipsfx:       Mach-O 64-bit executable x86_64
+
+/usr/bin/zip:            Mach-O 64-bit executable x86_64
+
+/usr/bin/zipcloak:       Mach-O 64-bit executable x86_64
+
+/usr/bin/zipdetails:     Perl script text executable
+
+/usr/bin/zipdetails5.18: Perl script text executable
+
+/usr/bin/zipgrep:        POSIX shell script text executable, ASCII text
+
+/usr/bin/zipinfo:        Mach-O 64-bit executable x86_64
+
+/usr/bin/zipnote:        Mach-O 64-bit executable x86_64
+
+/usr/bin/zipsplit:       Mach-O 64-bit executable x86_64
+
+grnq61-82:~ stypl001$ ls - l 'which cp'
+
+ls: -: No such file or directory
+
+ls: l: No such file or directory
+
+ls: which cp: No such file or directory
+
+grnq61-82:~ stypl001$ echo this is a      test
+
+this is a test
+
+grnq61-82:~ stypl001$ echo The total is $100.00
+
+The total is 00.00
+
+grnq61-82:~ stypl001$ ls -l two words.txt
+
+ls: two: No such file or directory
+
+ls: words.txt: No such file or directory
+
+grnq61-82:~ stypl001$ ls -l "two words.txt"
+
+ls: two words.txt: No such file or directory
+
+grnq61-82:~ stypl001$ ls -l "two words.txt"
+
+ls: two words.txt: No such file or directory
+
+grnq61-82:~ stypl001$ mv "two words.txt" two_words.txt
+
+mv: rename two words.txt to two_words.txt: No such file or directory
+
+grnq61-82:~ stypl001$ echo "$USER $((2+2)) $(cal)"
+
+stypl001 4      March 2024       
+
+Su Mo Tu We Th Fr Sa  
+
+                1  2  
+
+ 3  4  5  6  7  8  9  
+
+10 11 12 13 14 15 16  
+
+17 18 19 20 21 22 23  
+
+24 25 26 27 28 29 30  
+
+31                    
+
+grnq61-82:~ stypl001$ echo this is a   test
+
+this is a test
+
+grnq61-82:~ stypl001$ echo  "this is a   test"
+
+this is a   test
+
+grnq61-82:~ stypl001$ echo $(cal)
+
+March 2024 Su Mo Tu We Th Fr Sa 1 2 3 4 5 6  7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+
+grnq61-82:~ stypl001$ echo "$(cal)"
+
+     March 2024       
+
+Su Mo Tu We Th Fr Sa  
+
+                1  2  
+
+ 3  4  5  6  7  8  9  
+
+10 11 12 13 14 15 16  
+
+17 18 19 20 21 22 23  
+
+24 25 26 27 28 29 30  
+
+31                    
+
+grnq61-82:~ stypl001$ echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+
+text /Users/stypl001/*.txt a b foo 4 stypl001
+
+grnq61-82:~ stypl001$ echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
+
+text ~/*.txt {a,b} foo 4 stypl001
+
+grnq61-82:~ stypl001$ echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
+
+text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+
+grnq61-82:~ stypl001$ echo "The balance for user $USER is: \$5.00"
+
+The balance for user stypl001 is: $5.00
+
+grnq61-82:~ stypl001$ mv bad\&filename good_filename
+
+mv: rename bad&filename to good_filename: No such file or directory
+
+grnq61-82:~ stypl001$ Last login: Thu Mar  7 14:01:15 on ttys000
+
+
+
+
+wtmp begins Thu Mar  7 15:21 
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo this is a test
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ this is a test
+
+-bash: this: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo *
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Applications Desktop Documents Downloads Library Movies Music Pictures Public command-line-1-4-command-line.docx dir1 dir2
+
+-bash: Applications: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ ls
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Applications
+
+Applications
+
+grnq61-82:~ stypl001$ Applications
+
+Applications
+
+grnq61-82:~ stypl001$ Applications
+
+Applications
+
+grnq61-82:~ stypl001$ ApplicationsMusic
+
+-bash: ApplicationsMusic: command not found
+
+grnq61-82:~ stypl001$ Desktop
+
+Desktop
+
+grnq61-82:~ stypl001$ Desktop
+
+Desktop
+
+grnq61-82:~ stypl001$ Desktop
+
+Desktop
+
+grnq61-82:~ stypl001$ Desktop
+
+Desktop
+
+grnq61-82:~ stypl001$ DesktopPictures
+
+-bash: DesktopPictures: command not found
+
+grnq61-82:~ stypl001$ Documents
+
+Documents
+
+grnq61-82:~ stypl001$ Documents
+
+Documents
+
+grnq61-82:~ stypl001$ Documents
+
+Documents
+
+grnq61-82:~ stypl001$ DocumentsPublic
+
+-bash: DocumentsPublic: command not found
+
+grnq61-82:~ stypl001$ Downloads
+
+Downloads
+
+grnq61-82:~ stypl001$ Downloads
+
+Downloads
+
+grnq61-82:~ stypl001$ Downloads
+
+Downloads
+
+grnq61-82:~ stypl001$ Downloadscommand-line-1-4-command-line.docx
+
+-bash: Downloadscommand-line-1-4-command-line.docx: command not found
+
+grnq61-82:~ stypl001$ Library
+
+Library
+
+grnq61-82:~ stypl001$ Library
+
+Library
+
+grnq61-82:~ stypl001$ Library
+
+Library
+
+grnq61-82:~ stypl001$ Library
+
+Library
+
+grnq61-82:~ stypl001$ Librarydir1
+
+-bash: Librarydir1: command not found
+
+grnq61-82:~ stypl001$ Movies
+
+Movies
+
+grnq61-82:~ stypl001$ Movies
+
+Movies
+
+grnq61-82:~ stypl001$ Movies
+
+Movies
+
+grnq61-82:~ stypl001$ Movies
+
+Movies
+
+grnq61-82:~ stypl001$ Moviesdir2
+
+-bash: Moviesdir2: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo D*
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Desktop Documents Downloads
+
+-bash: Desktop: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo *s
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Applications Documents Downloads Movies Pictures
+
+-bash: Applications: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo [[:upper:]]*
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Applications Desktop Documents Downloads Library Movies Music Pictures Public
+
+-bash: Applications: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo /usr/*/share
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ /usr/local/share
+
+-bash: /usr/local/share: is a directory
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo ~
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ /Users/stypl001
+
+-bash: /Users/stypl001: is a directory
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo ~foo
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ ~foo
+
+-bash: ~foo: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo $((2 + 2))
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ 4
+
+-bash: 4: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo $(($((5**2)) * 3))
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ 75
+
+-bash: 75: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo $(((5**2) * 3))
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ 75
+
+-bash: 75: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo Five divided by two equals $((5/2))
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Five divided by two equals 2
+
+-bash: Five: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo with $((5%2)) left over.
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ with 1 left over.
+
+-bash: with: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo Front-{A,B,C}-Back
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Front-A-Back Front-B-Back Front-C-Back
+
+-bash: Front-A-Back: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo Number_{1..5}
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Number_1 Number_2 Number_3 Number_4 Number_5
+
+-bash: Number_1: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo {01..15}
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+-bash: 1: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo {001..15}
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+-bash: 1: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo {Z..A}
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
+
+-bash: Z: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo a{A{1,2},B{3,4}}b
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ aA1b aA2b aB3b aB4b
+
+-bash: aA1b: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ mkdir Photos
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ cd Photos
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:Photos stypl001$ mkdir {2007..2009}-{01..12}
+
+-bash: grnq61-82:Photos: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:Photos stypl001$ ls
+
+-bash: grnq61-82:Photos: command not found
+
+grnq61-82:~ stypl001$ 2007-12007-22007-62008-12008-22008-62009-12009-22009-6
+
+-bash: 2007-12007-22007-62008-12008-22008-62009-12009-22009-6: command not found
+
+grnq61-82:~ stypl001$ 2007-102007-32007-72008-102008-32008-72009-102009-32009-7
+
+-bash: 2007-102007-32007-72008-102008-32008-72009-102009-32009-7: command not found
+
+grnq61-82:~ stypl001$ 2007-112007-42007-82008-112008-42008-82009-112009-42009-8
+
+-bash: 2007-112007-42007-82008-112008-42008-82009-112009-42009-8: command not found
+
+grnq61-82:~ stypl001$ 2007-122007-52007-92008-122008-52008-92009-122009-52009-9
+
+-bash: 2007-122007-52007-92008-122008-52008-92009-122009-52009-9: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:Photos stypl001$ echo $USER
+
+-bash: grnq61-82:Photos: command not found
+
+grnq61-82:~ stypl001$ stypl001
+
+-bash: stypl001: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:Photos stypl001$ printenv | less
+
+-bash: grnq61-82:Photos: command not found
+
+grnq61-82:~ stypl001$ 61-82:Photos stypl001$ echo $SUER
+
+-bash: 61-82:Photos: command not found
+
+grnq61-82:~ stypl001$ 
+
+grnq61-82:~ stypl001$ grnq61-82:Photos stypl001$ echo $(ls)
+
+-bash: grnq61-82:Photos: command not found
+
+grnq61-82:~ stypl001$ 2007-1 2007-10 2007-11 2007-12 2007-2 2007-3 2007-4 2007-5 2007-6 2007-7 2007-8 2007-9 2008-1 2008-10 2008-11 2008-12 2008-2 2008-3 2008-4 2008-5 2008-6 2008-7 2008-8 2008-9 2009-1 2009-10 2009-11 2009-12 2009-2 2009-3 2009-4 2009-5 2009-6 2009-7 2009-8 2009-9
+
+-bash: 2007-1: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:Photos stypl001$ cd ../
+
+-bash: grnq61-82:Photos: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo $(ls)
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ Applications Desktop Documents Downloads Library Movies Music Photos Pictures Public command-line-1-4-command-line.docx dir1 dir2
+
+-bash: Applications: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ ls -l $(which cp)
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ -rwxr-xr-x  1 root  wheel  29024 Jul 29  2019 /bin/cp
+
+-bash: -rwxr-xr-x: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ file $(ls -d /usr/bin/* | grep zip)
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ /usr/bin/bunzip2:        Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/bunzip2:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/bzip2:          Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/bzip2:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/bzip2recover:   Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/bzip2recover:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/funzip:         Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/funzip:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/gunzip:         Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/gunzip:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/gzip:           Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/gzip:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/unzip:          Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/unzip:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/unzipsfx:       Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/unzipsfx:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/zip:            Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/zip:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/zipcloak:       Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/zipcloak:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/zipdetails:     Perl script text executable
+
+-bash: /usr/bin/zipdetails:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/zipdetails5.18: Perl script text executable
+
+-bash: /usr/bin/zipdetails5.18:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/zipgrep:        POSIX shell script text executable, ASCII text
+
+-bash: /usr/bin/zipgrep:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/zipinfo:        Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/zipinfo:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/zipnote:        Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/zipnote:: No such file or directory
+
+grnq61-82:~ stypl001$ /usr/bin/zipsplit:       Mach-O 64-bit executable x86_64
+
+-bash: /usr/bin/zipsplit:: No such file or directory
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ ls - l 'which cp'
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ ls: -: No such file or directory
+
+-bash: ls:: command not found
+
+grnq61-82:~ stypl001$ ls: l: No such file or directory
+
+-bash: ls:: command not found
+
+grnq61-82:~ stypl001$ ls: which cp: No such file or directory
+
+-bash: ls:: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo this is a      test
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ this is a test
+
+-bash: this: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo The total is $100.00
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ The total is 00.00
+
+-bash: The: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ ls -l two words.txt
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ ls: two: No such file or directory
+
+-bash: ls:: command not found
+
+grnq61-82:~ stypl001$ ls: words.txt: No such file or directory
+
+-bash: ls:: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ ls -l "two words.txt"
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ ls: two words.txt: No such file or directory
+
+-bash: ls:: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ ls -l "two words.txt"
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ ls: two words.txt: No such file or directory
+
+-bash: ls:: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ mv "two words.txt" two_words.txt
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ mv: rename two words.txt to two_words.txt: No such file or directory
+
+-bash: mv:: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo "$USER $((2+2)) $(cal)"
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ stypl001 4      March 2024       
+
+-bash: stypl001: command not found
+
+grnq61-82:~ stypl001$ Su Mo Tu We Th Fr Sa  
+
+Password:
+
+Su: Sorry
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ text /Users/stypl001/*.txt a b foo 4 stypl001
+
+-bash: text: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ text ~/*.txt {a,b} foo 4 stypl001
+
+-bash: text: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+
+-bash: text: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ echo "The balance for user $USER is: \$5.00"
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ The balance for user stypl001 is: $5.00
+
+-bash: The: command not found
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ mv bad\&filename good_filename
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ mv: rename bad&filename to good_filename: No such file or directory
+
+[1] 3139
+
+-bash: mv:: command not found
+
+-bash: filename: command not found
+
+[1]+  Exit 127                mv: rename bad
+
+grnq61-82:~ stypl001$ grnq61-82:~ stypl001$ 
+
+-bash: grnq61-82:~: command not found
+
+grnq61-82:~ stypl001$ 
