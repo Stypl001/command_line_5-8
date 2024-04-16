@@ -1,1 +1,26 @@
+#concepts addressed:
+redirection, file permission, directory
+# Retrospective:
+we both knew what needed to get done
+I don't know, maybe better communiction
+#
 
+Last login: Thu Mar 14 13:57:10 on ttys000
+
+grnq61-82:~ stypl001$ ls
+
+Applications Photos
+
+Desktop Pictures
+
+Documents Public
+
+Downloads command-line-1-4-command-line.docx
+
+Library dir1
+
+Movies dir2
+
+Music
+
+grnq61-82:~ stypl001$ clear
